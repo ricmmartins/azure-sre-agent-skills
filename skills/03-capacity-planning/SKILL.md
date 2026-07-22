@@ -45,7 +45,7 @@ Check for:
 - **App Service plans per region**
 - **AKS clusters per subscription**
 
-Build a quota utilization table:
+Build a quota utilization table. Use Unicode emoji characters directly (🟢🟡🔴) — never use emoji shortcodes like `:green_circle:` or `:red_circle:`.
 
 | Resource | Region | Used | Limit | Utilization | Risk |
 |----------|--------|------|-------|-------------|------|

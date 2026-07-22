@@ -114,6 +114,8 @@ az monitor diagnostic-settings subscription list --subscription <id> -o table
 
 ## Scoring model
 
+Use Unicode emoji characters directly in the output — never use emoji shortcodes like `:red_circle:` or `:yellow_circle:`.
+
 | Rating | Meaning |
 |--------|---------|
 | 🟢 **Compliant** | Meets standard, no action needed |
