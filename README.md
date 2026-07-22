@@ -26,7 +26,7 @@ This pack adds **8 custom skills** that transform your SRE Agent into a proactiv
 ## 🚀 Quick start
 
 ### Prerequisites
-- Azure SRE Agent enabled on your subscription ([docs](https://learn.microsoft.com/en-us/azure/sre-agent/))
+- Azure SRE Agent enabled on your subscription ([docs](https://learn.microsoft.com/en-us/azure/sre-agent/) | [portal](https://sre.azure.com/docs))
 - At least **Reader** role on target subscriptions
 - For cost skills: **Cost Management Reader** role
 
@@ -126,4 +126,4 @@ Ideas for new skills:
 
 ---
 
-Built by [@ricmmartins](https://github.com/ricmmartins) | Powered by [Azure SRE Agent](https://learn.microsoft.com/en-us/azure/sre-agent/)
+Built by [@ricmmartins](https://github.com/ricmmartins) | Powered by [Azure SRE Agent](https://sre.azure.com/docs)
