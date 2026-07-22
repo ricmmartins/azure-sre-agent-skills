@@ -23,6 +23,39 @@ This pack adds **8 custom skills** that transform your SRE Agent into a proactiv
 | 07 | [Digital Native Governance](skills/07-digital-native-governance/SKILL.md) | Startup governance maturity check (15 checks, scored 0–100) | Enterprise readiness for startups |
 | 08 | [AI Foundry & OpenAI Posture](skills/08-ai-foundry-posture/SKILL.md) | Security, reliability & cost posture for Azure OpenAI/Foundry (15 checks) | AI workload production readiness |
 
+## 📸 Example output
+
+Here's what Skill 08 (AI Foundry Posture) looks like when it runs:
+
+```
+╔══════════════════════════════════════════════════════════════════╗
+║       AI FOUNDRY & OPENAI POSTURE CHECK                         ║
+║                                                                  ║
+║   Score: 52 / 100         Level: 🟡 Developing                  ║
+║   Accounts assessed: 1                                           ║
+║   Deployments found: 3                                           ║
+╚══════════════════════════════════════════════════════════════════╝
+
+| Category                    | Score | Max | Status |
+|-----------------------------|-------|-----|--------|
+| 🔐 Security                 | 18    | 35  | 🟡     |
+| ⚙️ Reliability               | 17    | 30  | 🟡     |
+| 💰 Cost & Efficiency         | 12    | 25  | 🟡     |
+| 🏗️ Architecture              | 5     | 10  | 🟡     |
+| TOTAL                       | 52    | 100 | 🟡     |
+```
+
+Each check includes a finding, severity, and remediation command with a 📖 link to Microsoft Learn docs.
+
+## 👤 Who is this for?
+
+| Persona | Use case |
+|---------|----------|
+| **Solution Engineer** | Run a governance/WAF review before a customer workshop |
+| **SRE / Platform Engineer** | Weekly automated checks on security, cost, and compliance |
+| **CTO / Engineering Lead** | Pre-audit maturity assessment ("are we production-ready?") |
+| **FinOps Practitioner** | Monthly cost optimization + chargeback reports |
+
 ## 🚀 Quick start
 
 ### Prerequisites
@@ -99,14 +132,7 @@ See [docs/scheduled-tasks.md](docs/scheduled-tasks.md) for setup instructions.
 
 ## 📐 Architecture decisions
 
-- **Tools used**: `RunAzCliReadCommands` + `execute_kusto_query` — read-only by design for safety
-- **No write operations**: Skills analyze and report; remediation commands are suggested but not auto-executed
-- **Remediation guidance**: Each skill includes inline 📖 Microsoft Learn links and instructs the agent to validate CLI commands via `GetAzCliHelp` before suggesting
-- **Date handling**: Uses Linux shell `$(date -u -d '...' +%Y-%m-%dT%H:%M:%SZ)` syntax (SRE Agent sandbox is Linux)
-- **Cost data**: Uses `az costmanagement query` (stable) instead of deprecated `az consumption` commands
-- **Quota increases**: Documents REST API approach (`az rest`) since `az quota` CLI is preview/unstable
-- **Resource Graph**: Used as fallback when az cli commands require `--resource-group` but subscription-wide scan is needed
-- **Kusto queries**: Skills 07 and 08 use `execute_kusto_query` for Log Analytics data (429 throttling, token trends)
+See [docs/architecture.md](docs/architecture.md) for detailed design choices, safety model, and skill structure conventions.
 
 ## 🤝 Contributing
 
