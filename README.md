@@ -2,7 +2,7 @@
 
 > Custom skills for [Azure SRE Agent](https://learn.microsoft.com/en-us/azure/sre-agent/) that fill gaps in its built-in capabilities, focused on **proactive governance**, **cost intelligence**, and **architecture quality**.
 
-> ⚠️ **Preview**: Azure SRE Agent is currently in public preview. These skills have been tested on a live SRE Agent instance but may require adjustments as the platform evolves. Contributions and bug reports are welcome!
+> ⚠️ **Community project**: These skills are not officially maintained by Microsoft. They have been tested on a live Azure SRE Agent instance but may require adjustments as the platform evolves. Contributions and bug reports are welcome!
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
