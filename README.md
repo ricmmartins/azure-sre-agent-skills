@@ -27,23 +27,15 @@ This pack adds **8 custom skills** that transform your SRE Agent into a proactiv
 
 Here's what Skill 08 (AI Foundry Posture) looks like when it runs:
 
-```
-╔══════════════════════════════════════════════════════════════════╗
-║       AI FOUNDRY & OPENAI POSTURE CHECK                         ║
-║                                                                  ║
-║   Score: 52 / 100         Level: 🟡 Developing                  ║
-║   Accounts assessed: 1                                           ║
-║   Deployments found: 3                                           ║
-╚══════════════════════════════════════════════════════════════════╝
+> **AI Foundry & OpenAI Posture Check** — Score: **52 / 100** — Level: 🟡 **Developing**
 
-| Category                    | Score | Max | Status |
-|-----------------------------|-------|-----|--------|
-| 🔐 Security                 | 18    | 35  | 🟡     |
-| ⚙️ Reliability               | 17    | 30  | 🟡     |
-| 💰 Cost & Efficiency         | 12    | 25  | 🟡     |
-| 🏗️ Architecture              | 5     | 10  | 🟡     |
-| TOTAL                       | 52    | 100 | 🟡     |
-```
+| Category | Score | Max | Status |
+|----------|-------|-----|--------|
+| 🔐 Security | 18 | 35 | 🟡 |
+| ⚙️ Reliability | 17 | 30 | 🟡 |
+| 💰 Cost & Efficiency | 12 | 25 | 🟡 |
+| 🏗️ Architecture | 5 | 10 | 🟡 |
+| **TOTAL** | **52** | **100** | **🟡** |
 
 Each check includes a finding, severity, and remediation command with a 📖 link to Microsoft Learn docs.
 
