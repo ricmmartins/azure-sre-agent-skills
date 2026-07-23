@@ -43,6 +43,19 @@ This pack adds **8 custom skills** that transform your SRE Agent into a proactiv
 
 ## 🚀 Quick start
 
+### How this differs from Azure Advisor
+
+| | Azure Advisor | SRE Agent Skills |
+|---|---|---|
+| **Output** | Flat list of per-resource recommendations | Scored reports with maturity levels and priority |
+| **Correlation** | None — each recommendation is isolated | Connects findings across domains ("fix 2.2 first, it blocks 2.5 and 3.5") |
+| **Remediation** | Link to documentation | Ready-to-paste `az` CLI commands |
+| **Scheduling** | Passive (you go check) | Runs on your schedule, surfaces issues proactively |
+| **Coverage** | Cost, Security, Reliability, OpEx, Performance | + FinOps chargeback, Postmortem, AI posture, Digital Native governance |
+| **Context** | Generic (same advice for everyone) | Asks about your scenario (startup? enterprise? pre-audit?) |
+
+Advisor is a linter. These skills are closer to a staff SRE who reads everything, correlates findings, and delivers a prioritized report.
+
 ### Prerequisites
 - Azure SRE Agent enabled on your subscription ([docs](https://learn.microsoft.com/en-us/azure/sre-agent/) | [portal](https://sre.azure.com/docs))
 - At least **Reader** role on target subscriptions
