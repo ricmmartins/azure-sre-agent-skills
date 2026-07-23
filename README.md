@@ -23,21 +23,18 @@ This pack adds **8 custom skills** that transform your SRE Agent into a proactiv
 | 07 | [Digital Native Governance](skills/07-digital-native-governance/SKILL.md) | Startup governance maturity check (15 checks, scored 0–100) | Enterprise readiness for startups |
 | 08 | [AI Foundry & OpenAI Posture](skills/08-ai-foundry-posture/SKILL.md) | Security, reliability & cost posture for Azure OpenAI/Foundry (15 checks) | AI workload production readiness |
 
-## 📸 Example output
+### Skill outputs (real examples)
 
-Here's what Skill 08 (AI Foundry Posture) looks like when it runs:
-
-> **AI Foundry & OpenAI Posture Check** — Score: **52 / 100** — Level: 🟡 **Developing**
-
-| Category | Score | Max | Status |
-|----------|-------|-----|--------|
-| 🔐 Security | 18 | 35 | 🟡 |
-| ⚙️ Reliability | 17 | 30 | 🟡 |
-| 💰 Cost & Efficiency | 12 | 25 | 🟡 |
-| 🏗️ Architecture | 5 | 10 | 🟡 |
-| **TOTAL** | **52** | **100** | **🟡** |
-
-Each check includes a finding, severity, and remediation command with a 📖 link to Microsoft Learn docs.
+| | |
+|---|---|
+| ![Skill 01](docs/images/skill-01-waf-review.png) | ![Skill 02](docs/images/skill-02-compliance.png) |
+| **01 — Well-Architected Review** (50% overall) | **02 — Compliance & Governance** (~35% overall) |
+| ![Skill 03](docs/images/skill-03-capacity.png) | ![Skill 04](docs/images/skill-04-finops.png) |
+| **03 — Capacity Planning** (all green) | **04 — FinOps Intelligence** ($92/mo savings) |
+| ![Skill 05](docs/images/skill-05-postmortem.png) | ![Skill 06](docs/images/skill-06-defender.png) |
+| **05 — Incident Postmortem** (Sev-1 analysis) | **06 — Defender Secure Score** (22.43/37) |
+| ![Skill 07](docs/images/skill-07-governance.png) | ![Skill 08](docs/images/skill-08-ai-foundry.png) |
+| **07 — Digital Native Governance** (41/100) | **08 — AI Foundry Posture** (checks + remediation) |
 
 ## 👤 Who is this for?
 
