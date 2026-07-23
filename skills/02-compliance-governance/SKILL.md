@@ -11,6 +11,9 @@ tools:
 ## Purpose
 Assess the governance posture of Azure subscriptions by auditing policies, RBAC assignments, tagging standards, resource locks, and regulatory alignment. Produce a compliance scorecard with remediation steps.
 
+## CRITICAL formatting rule
+Use Unicode emoji characters directly (🟢 🟡 🔴) in ALL output — headers, tables, findings, bullet points, everywhere. NEVER use emoji shortcodes like `:red_circle:`, `:yellow_circle:`, `:green_circle:`, or any `:name:` syntax. This applies to every section of the report without exception.
+
 ## When to use this skill
 - User asks "are we compliant?"
 - User asks about governance, policy violations, or audit readiness
@@ -114,13 +117,13 @@ az monitor diagnostic-settings subscription list --subscription <id> -o table
 
 ## Scoring model
 
-Use Unicode emoji characters directly in the output — never use emoji shortcodes like `:red_circle:` or `:yellow_circle:`.
-
 | Rating | Meaning |
 |--------|---------|
 | 🟢 **Compliant** | Meets standard, no action needed |
 | 🟡 **Partial** | Partially implemented, needs improvement |
 | 🔴 **Non-compliant** | Missing or misconfigured, action required |
+
+Reminder: use the actual Unicode characters 🟢 🟡 🔴 above, never shortcodes.
 
 ## Expected output
 
