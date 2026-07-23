@@ -146,12 +146,13 @@ For each risk identified:
 ## Expected output
 
 ### Capacity summary
-```
-🏗️ Resources scanned: X
-⚠️ Resources at risk (>70% capacity): Y
-🔴 Resources critical (>90% capacity): Z
-📈 Projected limit breach within 30 days: W resources
-```
+
+| Metric | Value |
+|--------|-------|
+| 🏗️ Resources scanned | X |
+| ⚠️ Resources at risk (>70% capacity) | Y |
+| 🔴 Resources critical (>90% capacity) | Z |
+| 📈 Projected limit breach within 30 days | W resources |
 
 ### Risk matrix
 Table with all resources, current utilization, projected utilization at specified growth factor, and recommended action.

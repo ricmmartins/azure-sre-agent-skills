@@ -414,15 +414,15 @@ az cognitiveservices account list \
 ## Expected output
 
 ### Header
-```
-╔══════════════════════════════════════════════════════════════════╗
-║       AI FOUNDRY & OPENAI POSTURE CHECK                         ║
-║                                                                  ║
-║   Score: XX / 100         Level: 🟡 Developing                  ║
-║   Accounts assessed: N                                           ║
-║   Deployments found: M                                           ║
-╚══════════════════════════════════════════════════════════════════╝
-```
+
+## AI FOUNDRY & OPENAI POSTURE CHECK
+
+| | |
+|---|---|
+| **Score** | XX / 100 |
+| **Level** | 🟡 Developing |
+| **Accounts assessed** | N |
+| **Deployments found** | M |
 
 ### Per-account findings
 

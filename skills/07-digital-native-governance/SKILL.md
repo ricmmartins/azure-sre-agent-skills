@@ -362,15 +362,15 @@ Scoring:
 ## Expected output
 
 ### Header
-```
-╔══════════════════════════════════════════════════════════════════╗
-║       DIGITAL NATIVE GOVERNANCE CHECK                           ║
-║                                                                  ║
-║   Score: XX / 100         Level: 🟡 Developing                   ║
-║   Subscription: <name>                                           ║
-║   Date: YYYY-MM-DD                                               ║
-╚══════════════════════════════════════════════════════════════════╝
-```
+
+## DIGITAL NATIVE GOVERNANCE CHECK
+
+| | |
+|---|---|
+| **Score** | XX / 100 |
+| **Level** | 🟡 Developing |
+| **Subscription** | (name) |
+| **Date** | YYYY-MM-DD |
 
 ### Score breakdown
 
