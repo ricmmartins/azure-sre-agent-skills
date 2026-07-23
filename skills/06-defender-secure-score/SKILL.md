@@ -138,22 +138,19 @@ Note on date handling: The SRE Agent sandbox runs Linux. Use `$(date -u -d '30 d
 
 ## Expected output
 
-### Security dashboard (one-screen summary)
+### Report header (mandatory — use this exact format)
 
-```
-🛡️ DEFENDER SECURE SCORE MONITOR — [Date]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Defender Secure Score Report
 
-Secure Score:           72% (216/300 points)
-Trend:                  +3 pts since last check ✅
-Unhealthy assessments:  18 total (4 High, 9 Medium, 5 Low)
-Defender plans:         6/8 enabled 🟡
-Quick wins available:   5 actions → +12 points potential
-Expiring credentials:   7 within 30 days ⚠️
-Public exposure:        3 resources with open attack surface 🔴
+| Field | Value |
+|-------|-------|
+| Subscription | (name + ID) |
+| Assessment Date | YYYY-MM-DD |
+| Overall Score | XX.XX / YY (ZZ%) |
 
-Next target:            78% (+18 points achievable this sprint)
-```
+Then present the gap summary:
+
+> The subscription is earning only **ZZ%** of its maximum Secure Score. There is a **N-point gap** to close.
 
 ### Score improvement plan
 

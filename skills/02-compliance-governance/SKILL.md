@@ -127,6 +127,16 @@ Reminder: use the actual Unicode characters 🟢 🟡 🔴 above, never shortcod
 
 ## Expected output
 
+### Report header (mandatory — use this exact format)
+
+## Compliance & Governance Audit Report
+
+| Field | Value |
+|-------|-------|
+| Subscription | (name + ID) |
+| Assessment Date | YYYY-MM-DD |
+| Overall Score | XX% |
+
 ### Governance scorecard
 
 | Area | Status | Compliant | Partial | Non-compliant | Score |

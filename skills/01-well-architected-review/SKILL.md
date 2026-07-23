@@ -106,6 +106,16 @@ For each check, assign one of:
 
 ## Expected output
 
+### Report header (mandatory — use this exact format)
+
+## Well-Architected Review Report
+
+| Field | Value |
+|-------|-------|
+| Subscription | (name + ID) |
+| Assessment Date | YYYY-MM-DD |
+| Overall Score | XX% |
+
 ### Summary
 A table with pillar scores:
 

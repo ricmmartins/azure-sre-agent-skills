@@ -361,16 +361,16 @@ Scoring:
 
 ## Expected output
 
-### Header
+### Report header (mandatory — use this exact format)
 
-## DIGITAL NATIVE GOVERNANCE CHECK
+## Digital Native Governance Check Report
 
-| | |
-|---|---|
-| **Score** | XX / 100 |
-| **Level** | 🟡 Developing |
-| **Subscription** | (name) |
-| **Date** | YYYY-MM-DD |
+| Field | Value |
+|-------|-------|
+| Score | XX / 100 |
+| Level | 🟡 Developing |
+| Subscription | (name + ID) |
+| Assessment Date | YYYY-MM-DD |
 
 ### Score breakdown
 

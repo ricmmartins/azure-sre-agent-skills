@@ -142,15 +142,21 @@ Calculate per-team efficiency indicators:
 
 ## Expected output
 
-### Executive summary
-```
-💰 Total Azure spend (this month): $XX,XXX
-📈 vs. last month: +/-X% ($+/-X,XXX)
-🗑️ Waste identified: $X,XXX/month recoverable
-👥 Teams/projects tracked: X
-🏷️ Allocation rate: X% (Y% unallocated)
-🔍 Issues found: X critical, Y high, Z medium
-```
+### Report header (mandatory — use this exact format)
+
+## FinOps Cost Optimization & Chargeback Report
+
+| Field | Value |
+|-------|-------|
+| Subscription | (name + ID) |
+| Report Date | YYYY-MM-DD |
+| Total Spend (MTD) | $X,XXX |
+| Projected Full Month | $X,XXX |
+| Month-over-month Change | +/-$X (+/-X%) |
+| Waste Identified (recoverable) | ~$X/month |
+| Resource Groups Tracked | N (M with spend) |
+| Tag Compliance | X% |
+| Issues Found | X Critical, Y High, Z Medium |
 
 ### Savings breakdown table
 
@@ -160,7 +166,7 @@ Calculate per-team efficiency indicators:
 | Rightsizing | 2 VMs at < 5% CPU | $380 | $190 | High | Resize D4s_v5 → B2ms |
 | Reservations | 5 VMs running 24/7 | $1,200 | $864 | Medium | 3yr RI |
 | Storage | No lifecycle policies | $200 | $80 | Medium | Add cool tier policy |
-| **Total** | | | **$X,XXX** | | |
+| **TOTAL RECOVERABLE** | — | — | **~$X,XXX/mo** | — | — |
 
 ### Cost allocation table
 

@@ -413,16 +413,17 @@ az cognitiveservices account list \
 
 ## Expected output
 
-### Header
+### Report header (mandatory — use this exact format)
 
-## AI FOUNDRY & OPENAI POSTURE CHECK
+## AI Foundry & OpenAI Posture Check Report
 
-| | |
-|---|---|
-| **Score** | XX / 100 |
-| **Level** | 🟡 Developing |
-| **Accounts assessed** | N |
-| **Deployments found** | M |
+| Field | Value |
+|-------|-------|
+| Score | XX / 100 |
+| Level | 🟡 Developing |
+| Accounts Assessed | N (list names) |
+| Deployments Found | M (model details) |
+| Assessment Date | YYYY-MM-DD |
 
 ### Per-account findings
 

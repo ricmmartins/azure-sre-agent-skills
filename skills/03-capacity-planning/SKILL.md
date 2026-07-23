@@ -145,6 +145,16 @@ For each risk identified:
 
 ## Expected output
 
+### Report header (mandatory — use this exact format)
+
+## Capacity Planning Report
+
+| Field | Value |
+|-------|-------|
+| Subscription | (name + ID) |
+| Assessment Date | YYYY-MM-DD |
+| Region(s) Assessed | (list) |
+
 ### Capacity summary
 
 | Metric | Value |
