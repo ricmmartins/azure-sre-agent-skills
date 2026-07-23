@@ -27,14 +27,10 @@ This pack adds **8 custom skills** that transform your SRE Agent into a proactiv
 
 | | |
 |---|---|
-| ![Skill 01](docs/images/skill-01-waf-review.png) | ![Skill 02](docs/images/skill-02-compliance.png) |
-| **01 — Well-Architected Review** (50% overall) | **02 — Compliance & Governance** (~35% overall) |
-| ![Skill 03](docs/images/skill-03-capacity.png) | ![Skill 04](docs/images/skill-04-finops.png) |
-| **03 — Capacity Planning** (all green) | **04 — FinOps Intelligence** ($92/mo savings) |
-| ![Skill 05](docs/images/skill-05-postmortem.png) | ![Skill 06](docs/images/skill-06-defender.png) |
-| **05 — Incident Postmortem** (Sev-1 analysis) | **06 — Defender Secure Score** (22.43/37) |
-| ![Skill 07](docs/images/skill-07-governance.png) | ![Skill 08](docs/images/skill-08-ai-foundry.png) |
-| **07 — Digital Native Governance** (41/100) | **08 — AI Foundry Posture** (checks + remediation) |
+| ![Governance](docs/images/skill-07-governance.png) | ![FinOps](docs/images/skill-04-finops.png) |
+| **Digital Native Governance** — maturity score with category breakdown | **FinOps Intelligence** — waste detection with prioritized savings |
+| ![Defender](docs/images/skill-06-defender.png) | ![AI Foundry](docs/images/skill-08-ai-foundry.png) |
+| **Defender Secure Score** — quick wins with score impact | **AI Foundry Posture** — per-check Pass/Fail assessment |
 
 ## 👤 Who is this for?
 
