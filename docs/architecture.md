@@ -36,7 +36,9 @@ tools:
 ## Pre-check
 ## Assessment procedure (with checks, commands, scoring tables)
 ## Scoring
+## Accepted exceptions (optional)
 ## Expected output
+## Sample output
 ## Remediation guidance
 ## References
 ```

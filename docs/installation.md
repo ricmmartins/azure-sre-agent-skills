@@ -15,6 +15,8 @@
 | FinOps Intelligence | Reader + Cost Management Reader |
 | Incident Postmortem | Reader (+ Log Analytics Reader for KQL queries) |
 | Defender Secure Score | Security Reader |
+| Digital Native Governance | Reader |
+| AI Foundry & OpenAI Posture | Reader + Cognitive Services Reader |
 
 ### Azure CLI extensions (auto-available in SRE Agent sandbox)
 - `az costmanagement` — for cost queries
@@ -35,14 +37,7 @@
 
 ### Option 2: Install via API
 
-```bash
-# Clone this repo
-git clone https://github.com/ricmmartins/azure-sre-agent-skills.git
-cd azure-sre-agent-skills
-
-# For each skill, use the SRE Agent API to create it
-# (API documentation pending from Microsoft)
-```
+API-based installation is not yet documented by Microsoft. When available, it will allow bulk-installing skills programmatically. For now, use the portal method above.
 
 ## Verifying installation
 
