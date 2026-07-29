@@ -198,3 +198,48 @@ When exceptions are provided:
 - Azure Resource Health: https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview
 - Activity Log: https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log
 - Service Health: https://learn.microsoft.com/en-us/azure/service-health/overview
+
+## Sample output
+
+> The following is a redacted example of what the report looks like after an incident is resolved.
+
+## Incident Postmortem Report
+
+| Field | Value |
+|-------|-------|
+| Subscription | contoso-prod-001 (a1b2c3d4-e5f6-7890-abcd-ef1234567890) |
+| Incident Date | 2026-07-10 |
+| Severity | Sev-2 |
+| Duration | 1h 23m |
+| Status | Draft — pending team review |
+
+### Executive summary
+The payment-service API returned HTTP 500 errors for 1h 23m due to an OOM-killed pod in AKS cluster `aks-app-prod`. Root cause was a memory leak in the connection pool introduced in release v2.14.0. Impact: ~340 failed transactions affecting 120 customers.
+
+### Timeline (all times UTC)
+
+| Time | Event |
+|------|-------|
+| 14:12 | Memory usage spike detected on `payment-service` pod |
+| 14:18 | Alert fired: "Pod OOM-killed in aks-app-prod" |
+| 14:22 | On-call engineer acknowledged |
+| 14:35 | Root cause identified: connection pool memory leak |
+| 14:50 | Mitigation applied: rolled back to v2.13.2 |
+| 15:35 | Service fully recovered, error rate at 0% |
+
+### Detection & response assessment
+
+| Metric | Value | Target | Assessment |
+|--------|-------|--------|------------|
+| Time to detect | 6m | <5m | ⚠️ |
+| Time to acknowledge | 4m | <15m | ✅ |
+| Time to mitigate | 28m | <30m | ✅ |
+| Time to resolve | 1h 23m | <2h | ✅ |
+
+### Action items (sample)
+
+| ID | Action | Owner | Priority | Due |
+|----|--------|-------|----------|-----|
+| AI-1 | Add memory-based HPA to payment-service | Platform team | High | +7 days |
+| AI-2 | Update load test for sustained connection pool scenarios | QA team | High | +14 days |
+| AI-3 | Add memory utilization alert at 80% threshold | SRE team | Medium | +3 days |

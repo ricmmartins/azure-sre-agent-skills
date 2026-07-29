@@ -169,3 +169,67 @@ For each ❌ or ⚠️ finding, include in the output:
 - Cost Optimization: https://learn.microsoft.com/en-us/azure/well-architected/cost-optimization/
 - Operational Excellence: https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/
 - Performance Efficiency: https://learn.microsoft.com/en-us/azure/well-architected/performance-efficiency/
+
+## Sample output
+
+> The following is a redacted example of what the report looks like when run against a subscription.
+
+## Well-Architected Review Report
+
+| Field | Value |
+|-------|-------|
+| Subscription | contoso-prod-001 (a1b2c3d4-e5f6-7890-abcd-ef1234567890) |
+| Assessment Date | 2026-07-15 |
+| Overall Score | 68% |
+
+### Summary
+
+| Pillar | Pass | Needs Attention | Fail | Score |
+|--------|------|----------------|------|-------|
+| Reliability | 3 | 1 | 1 | 60% |
+| Security | 2 | 2 | 1 | 40% |
+| Cost Optimization | 4 | 1 | 0 | 80% |
+| Operational Excellence | 3 | 1 | 1 | 60% |
+| Performance Efficiency | 4 | 0 | 1 | 80% |
+| **Overall** | **16** | **5** | **4** | **68%** |
+
+### Detailed findings (sample)
+
+#### Reliability
+
+| Check | Status | Evidence | Priority |
+|-------|--------|----------|----------|
+| 1.1 Availability zones | ❌ Fail | VMs `vm-web-01`, `vm-web-02` in `rg-app-prod` have no zones configured | Critical |
+| 1.2 Backup coverage | ✅ Pass | Recovery Services vault `rsv-prod-eastus` protects 4/4 VMs | — |
+| 1.3 Disaster recovery | ⚠️ Needs attention | No ASR replication configured for `rg-app-prod` | High |
+
+#### Security
+
+| Check | Status | Evidence | Priority |
+|-------|--------|----------|----------|
+| 2.1 Managed identity | ✅ Pass | App Service `app-api-prod` uses System-Assigned MI | — |
+| 2.2 Network isolation | ❌ Fail | SQL Server `sql-contoso-prod` has public endpoint enabled | Critical |
+| 2.3 Key management | ⚠️ Needs attention | 2 secrets in `kv-contoso-prod` expire within 30 days | High |
+
+### Top 5 recommendations
+
+| # | Recommendation | Impact | Effort |
+|---|---------------|--------|--------|
+| 1 | Enable availability zones on production VMs | Critical | 2 hours |
+| 2 | Disable public endpoint on SQL Server | Critical | 30 min |
+| 3 | Configure ASR replication for `rg-app-prod` | High | 4 hours |
+| 4 | Rotate expiring Key Vault secrets | High | 1 hour |
+| 5 | Add autoscale rules to App Service plan `asp-prod` | Medium | 30 min |
+
+### Remediation guidance (sample)
+
+```bash
+# Enable availability zones on VM (redeploy required)
+az vm create --name vm-web-01 --resource-group rg-app-prod --zone 1 ...
+
+# Disable public access on SQL Server
+az sql server update --name sql-contoso-prod --resource-group rg-data-prod --set publicNetworkAccess="Disabled"
+
+# Add autoscale rule to App Service plan
+az monitor autoscale create --resource-group rg-app-prod --resource asp-prod --resource-type Microsoft.Web/serverfarms --min-count 2 --max-count 10 --count 2
+```

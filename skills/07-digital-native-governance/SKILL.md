@@ -420,3 +420,57 @@ For each ❌ or ⚠️ finding, include in the output:
 
 ### 📚 Learn more
 Link each finding to the relevant "Digital Natives on Azure" article for deep context.
+
+## Sample output
+
+> The following is a redacted example of what the report looks like when run against a subscription.
+
+## Digital Native Governance Check Report
+
+| Field | Value |
+|-------|-------|
+| Score | 52 / 100 |
+| Level | 🟡 Developing |
+| Subscription | contoso-prod-001 (a1b2c3d4-e5f6-7890-abcd-ef1234567890) |
+| Assessment Date | 2026-07-15 |
+
+### Score breakdown
+
+| Category | Score | Max | Status |
+|----------|-------|-----|--------|
+| 🏥 Alerting & Observability | 10 | 20 | 🟡 |
+| 🏗️ Subscription Topology | 4 | 20 | 🔴 |
+| 💰 Cost Controls | 12 | 15 | 🟢 |
+| 🔐 Identity & Access | 13 | 20 | 🟡 |
+| 🌐 Web Protection | 7 | 15 | 🟡 |
+| 📋 Operational Foundations | 7 | 10 | 🟡 |
+| **TOTAL** | **52** | **100** | **🟡 Developing** |
+
+### 🚨 Critical gaps (sample)
+
+| # | Finding | Category | Points Lost |
+|---|---------|----------|-------------|
+| 1 | No Management Groups — flat subscription topology | 🏗️ Topology | -8 |
+| 2 | Single subscription for all environments | 🏗️ Topology | -8 |
+| 3 | 5 Owners at subscription level | 🔐 Identity | -3 |
+| 4 | No Resource Health alerts configured | 🏥 Alerting | -6 |
+
+### ⚡ Quick wins (sample)
+
+| Action | Points | Effort | Command |
+|--------|--------|--------|---------|
+| Create Service Health alert for all 4 event types | +4 | 10 min | See below |
+| Add Resource Health alerts | +6 | 10 min | See below |
+| Configure budget with 80%/100% notifications | +4 | 5 min | See below |
+
+### Remediation guidance (sample)
+
+```bash
+# Create budget with alert notifications
+az rest --method put \
+  --url "https://management.azure.com/subscriptions/a1b2c3d4-.../providers/Microsoft.Consumption/budgets/monthly-budget?api-version=2023-11-01" \
+  --body '{"properties":{"amount":15000,"category":"Cost","timeGrain":"Monthly","timePeriod":{"startDate":"2026-07-01"},"notifications":{"at80":{"enabled":true,"operator":"GreaterThanOrEqualTo","threshold":80,"contactEmails":["ops@contoso.com"]},"at100":{"enabled":true,"operator":"GreaterThanOrEqualTo","threshold":100,"contactEmails":["ops@contoso.com"]}}}}'
+
+# Remove excess Owner assignment
+az role assignment delete --assignee user@contoso.com --role Owner --scope /subscriptions/a1b2c3d4-...
+```

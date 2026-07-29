@@ -474,3 +474,52 @@ For each ❌ or ⚠️ finding, include in the output:
 - Model Lifecycle: https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/model-retirements
 - PTU Planning: https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/provisioned-throughput
 - PTU Calculator: https://ptucalc.com
+
+## Sample output
+
+> The following is a redacted example of what the report looks like when run against a subscription.
+
+## AI Foundry & OpenAI Posture Check Report
+
+| Field | Value |
+|-------|-------|
+| Score | 61 / 100 |
+| Level | 🟡 Developing |
+| Accounts Assessed | 2 (oai-contoso-prod, oai-contoso-dev) |
+| Deployments Found | 5 (gpt-4o, gpt-4o-mini, text-embedding-ada-002, gpt-4o x2) |
+| Assessment Date | 2026-07-15 |
+
+### Per-account findings (sample — oai-contoso-prod)
+
+| Check | Status | Finding | Recommendation |
+|-------|--------|---------|----------------|
+| 1.1 Managed Identity | ⚠️ | System MI enabled but `disableLocalAuth=false` | Set `disableLocalAuth=true` to block API key access |
+| 1.2 Network isolation | ❌ | `publicNetworkAccess=Enabled`, no firewall rules | Set `defaultAction=Deny` + add VNet rules |
+| 1.3 Content filtering | ✅ | All deployments have RAI policy `contoso-standard` assigned | — |
+| 2.1 Model version | ⚠️ | `gpt-4o` deployment on version `2024-05-13` retiring in 60 days | Upgrade to `2024-08-06` |
+| 2.2 Diagnostic settings | ✅ | RequestResponse + Audit logs → `law-contoso-prod` | — |
+| 2.3 Resource lock | ❌ | No CanNotDelete lock on `oai-contoso-prod` | Add lock |
+| 2.4 Multi-region | ✅ | Accounts in East US + West Europe | — |
+| 3.1 Rate limits | ✅ | Each deployment has explicit TPM capacity set | — |
+| 3.2 Model diversity | ✅ | Mix of gpt-4o + gpt-4o-mini for cost efficiency | — |
+| 4.1 AI Gateway (APIM) | ❌ | No APIM instance found | Deploy APIM with OpenAI backend |
+
+### Cost optimization opportunities (sample)
+
+| Finding | Current Cost | Potential Savings | Action |
+|---------|-------------|-------------------|--------|
+| `gpt-4o` used for simple classification tasks | ~$420/mo | ~$340/mo (80%) | Route to `gpt-4o-mini` |
+| Dev account `oai-contoso-dev` idle on weekends | ~$85/mo | ~$25/mo (30%) | Reduce dev TPM allocation |
+
+### Remediation commands (sample)
+
+```bash
+# Disable local API key authentication
+az cognitiveservices account update --name oai-contoso-prod --resource-group rg-ai-prod --set properties.disableLocalAuth=true
+
+# Set network firewall to deny by default
+az cognitiveservices account update --name oai-contoso-prod --resource-group rg-ai-prod --set properties.networkAcls.defaultAction=Deny
+
+# Add resource lock
+az lock create --name CanNotDelete --resource-group rg-ai-prod --resource oai-contoso-prod --resource-type Microsoft.CognitiveServices/accounts --lock-type CanNotDelete
+```

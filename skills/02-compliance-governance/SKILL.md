@@ -189,3 +189,50 @@ For each finding:
 
 ### Regulatory mapping (if framework specified)
 Map findings to specific controls (e.g., SOC2 CC6.1, ISO 27001 A.9.2.3).
+
+## Sample output
+
+> The following is a redacted example of what the report looks like when run against a subscription.
+
+## Compliance & Governance Audit Report
+
+| Field | Value |
+|-------|-------|
+| Subscription | contoso-prod-001 (a1b2c3d4-e5f6-7890-abcd-ef1234567890) |
+| Assessment Date | 2026-07-15 |
+| Overall Score | 61% |
+
+### Governance scorecard
+
+| Area | Status | Compliant | Partial | Non-compliant | Score |
+|------|--------|-----------|---------|---------------|-------|
+| Azure Policy | 🟡 | 18 | 5 | 3 | 69% |
+| RBAC | 🔴 | 2 | 1 | 3 | 33% |
+| Tagging | 🟡 | 45 | 12 | 8 | 69% |
+| Resource Locks | 🔴 | 1 | 0 | 3 | 25% |
+| Naming | 🟢 | 52 | 6 | 2 | 87% |
+| Network Gov. | 🟡 | 3 | 1 | 1 | 60% |
+| Diagnostics | 🟡 | 4 | 2 | 1 | 57% |
+| **Overall** | | | | | **61%** |
+
+### Critical findings (sample)
+
+| # | Finding | Area | Severity |
+|---|---------|------|----------|
+| 1 | 6 subscription-level Owners detected (limit: 3) | RBAC | 🔴 Critical |
+| 2 | 2 guest users with Contributor role on production | RBAC | 🔴 Critical |
+| 3 | SQL Server `sql-contoso-prod` has no delete lock | Resource Locks | 🔴 High |
+| 4 | 8 resources in `rg-app-prod` missing `cost-center` tag | Tagging | 🟡 Medium |
+
+### Remediation guidance (sample)
+
+```bash
+# Remove excess Owner assignments
+az role assignment delete --assignee user@external.com --role Owner --scope /subscriptions/a1b2c3d4-...
+
+# Add delete lock to production SQL Server
+az lock create --name CanNotDelete --resource-group rg-data-prod --resource sql-contoso-prod --resource-type Microsoft.Sql/servers --lock-type CanNotDelete
+
+# Tag resources with missing cost-center
+az resource tag --ids /subscriptions/.../resourceGroups/rg-app-prod/providers/Microsoft.Web/sites/app-api-prod --tags cost-center=CC-1234 environment=prod owner=platform-team
+```

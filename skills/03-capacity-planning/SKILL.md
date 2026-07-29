@@ -198,3 +198,54 @@ For each capacity risk identified, include in the output:
 - VM Sizes: https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/overview
 - Autoscale: https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-overview
 - App Service Scaling: https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up
+
+## Sample output
+
+> The following is a redacted example of what the report looks like when run against a subscription.
+
+## Capacity Planning Report
+
+| Field | Value |
+|-------|-------|
+| Subscription | contoso-prod-001 (a1b2c3d4-e5f6-7890-abcd-ef1234567890) |
+| Assessment Date | 2026-07-15 |
+| Region(s) Assessed | East US, West Europe |
+
+### Capacity summary
+
+| Metric | Value |
+|--------|-------|
+| 🏗️ Resources scanned | 47 |
+| ⚠️ Resources at risk (>70% capacity) | 5 |
+| 🔴 Resources critical (>90% capacity) | 2 |
+| 📈 Projected limit breach within 30 days | 1 resource |
+
+### Risk matrix (sample)
+
+| Resource | Region | Current | At 2x Load | Hits Limit | Action Needed |
+|----------|--------|---------|------------|------------|---------------|
+| Total vCPUs | East US | 85/100 (85%) | 170 ❌ | Now | Quota increase |
+| Dv5 vCPUs | East US | 32/50 (64%) | 64 ⚠️ | At 1.6x | Quota increase |
+| SQL DTU `sql-contoso-prod` | East US | 78% avg | 156% ❌ | At 1.3x | Scale up tier |
+| AKS nodes `aks-app-prod` | West Europe | 7/10 | 14 ❌ | At 1.4x | Increase max count |
+| Public IPs | East US | 8/20 (40%) | 16 🟢 | At 2.5x | Monitor |
+
+### Scaling runbook (sample)
+
+| Priority | Action | Resource | Estimated Time |
+|----------|--------|----------|---------------|
+| 1 | Request vCPU quota increase to 200 | East US subscription | 1–3 business days |
+| 2 | Scale SQL DB from S3 to S4 | `sql-contoso-prod` | 15 min (online) |
+| 3 | Increase AKS max node count to 20 | `aks-app-prod` | 5 min |
+
+### Remediation guidance (sample)
+
+```bash
+# Request vCPU quota increase via REST API
+az rest --method patch \
+  --url "https://management.azure.com/subscriptions/a1b2c3d4-.../providers/Microsoft.Capacity/resourceProviders/Microsoft.Compute/locations/eastus/serviceLimits/StandardDv5Family?api-version=2020-10-25" \
+  --body '{"properties":{"limit":{"limitObjectType":"LimitValue","value":200}}}'
+
+# Scale up SQL Database
+az sql db update --resource-group rg-data-prod --server sql-contoso-prod --name appdb --service-objective S4
+```

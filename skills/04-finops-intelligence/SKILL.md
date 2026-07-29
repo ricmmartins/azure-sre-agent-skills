@@ -217,3 +217,55 @@ For each cost finding, include in the output:
 - Azure Advisor Cost: https://learn.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations
 - Reserved Instances: https://learn.microsoft.com/en-us/azure/cost-management-billing/reservations/save-compute-costs-reservations
 - Orphaned Resources: https://learn.microsoft.com/en-us/azure/advisor/advisor-reference-cost-recommendations
+
+## Sample output
+
+> The following is a redacted example of what the report looks like when run against a subscription.
+
+## FinOps Cost Optimization & Chargeback Report
+
+| Field | Value |
+|-------|-------|
+| Subscription | contoso-prod-001 (a1b2c3d4-e5f6-7890-abcd-ef1234567890) |
+| Report Date | 2026-07-15 |
+| Total Spend (MTD) | $12,340 |
+| Projected Full Month | $16,450 |
+| Month-over-month Change | +$1,700 (+11.5%) |
+| Waste Identified (recoverable) | ~$1,179/month |
+| Resource Groups Tracked | 14 (12 with spend) |
+| Tag Compliance | 78% |
+| Issues Found | 2 Critical, 3 High, 4 Medium |
+
+### Savings breakdown table
+
+| Category | Finding | Current Cost/mo | Savings/mo | Priority | Action |
+|----------|---------|----------------|------------|----------|--------|
+| Orphaned | 3 unattached disks in `rg-app-prod` | $45 | $45 | High | Delete or snapshot+delete |
+| Orphaned | 2 unused public IPs | $7 | $7 | Medium | Delete |
+| Rightsizing | `vm-batch-01` at 3% CPU avg | $380 | $190 | High | Resize D4s_v5 → B2ms |
+| Rightsizing | `sql-staging` at 8% DTU | $250 | $125 | Medium | Downgrade S3 → S1 |
+| Reservations | 5 VMs running 24/7 for 90+ days | $1,200 | $864 | Medium | 3yr RI |
+| **TOTAL RECOVERABLE** | — | — | **~$1,179/mo** | — | — |
+
+### Cost allocation table
+
+| Team / Project | This Period | Last Period | Change | % Change | Top Service | % of Total |
+|----------------|------------|-------------|--------|----------|-------------|------------|
+| Platform | $5,200 | $4,800 | +$400 | +8.3% | Compute | 32% |
+| Product API | $3,800 | $3,100 | +$700 | +22.6% ⚠️ | Databases | 24% |
+| Data Team | $2,700 | $2,600 | +$100 | +3.8% | Storage | 17% |
+| Unallocated | $1,300 | $800 | +$500 | +62.5% 🔴 | Mixed | 8% |
+| **Total** | **$16,450** | **$14,750** | **+$1,700** | **+11.5%** | | **100%** |
+
+### Remediation guidance (sample)
+
+```bash
+# Delete unattached managed disks
+az disk delete --name disk-old-backup-01 --resource-group rg-app-prod --yes
+
+# Resize over-provisioned VM
+az vm resize --name vm-batch-01 --resource-group rg-batch-prod --size Standard_B2ms
+
+# Tag unallocated resources
+az resource tag --ids /subscriptions/.../resourceGroups/rg-shared/providers/Microsoft.Storage/storageAccounts/stcontososhared --tags team=platform cost-center=CC-1234
+```

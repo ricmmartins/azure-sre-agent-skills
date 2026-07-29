@@ -200,3 +200,60 @@ az security pricing create --name StorageAccounts --tier Standard
 
 ### Recommended cadence
 Schedule this skill as a **weekly** task via SRE Agent scheduled tasks for continuous score improvement tracking.
+
+## Sample output
+
+> The following is a redacted example of what the report looks like when run against a subscription.
+
+## Defender Secure Score Report
+
+| Field | Value |
+|-------|-------|
+| Subscription | contoso-prod-001 (a1b2c3d4-e5f6-7890-abcd-ef1234567890) |
+| Assessment Date | 2026-07-15 |
+| Overall Score | 38.50 / 56 (69%) |
+
+> The subscription is earning only **69%** of its maximum Secure Score. There is a **17.5-point gap** to close.
+
+### Score improvement plan
+
+| Priority | Action | Points | Effort | Resources affected |
+|----------|--------|--------|--------|-------------------|
+| 1 | Enable HTTPS-only on 3 App Services | +4 | 5 min | app-web-prod, app-api-prod, app-admin-prod |
+| 2 | Enable Defender for Storage | +3 | 2 min | subscription-level |
+| 3 | Restrict SQL public access on 2 servers | +3 | 30 min | sql-contoso-prod, sql-contoso-staging |
+| 4 | Add NSG to 2 subnets without rules | +2 | 15 min | subnet-data-prod, subnet-mgmt-prod |
+| 5 | Rotate 3 expiring Key Vault secrets | +1.5 | 20 min | kv-contoso-prod |
+| **Total achievable** | | **+13.5** | **~1.5 hours** | |
+
+### Critical findings (sample)
+
+| # | Finding | Severity | Resources |
+|---|---------|----------|-----------|
+| 1 | SSH port 22 open to internet on NSG `nsg-mgmt-prod` | 🔴 Critical | 2 VMs exposed |
+| 2 | Storage account `stcontosoprod` allows public blob access | 🔴 Critical | 1 account |
+| 3 | Defender for Containers disabled | 🟠 High | AKS cluster `aks-app-prod` |
+
+### Defender plan coverage
+
+| Plan | Status | Impact |
+|------|--------|--------|
+| Cloud Posture (CSPM) | ✅ Standard | — |
+| Servers | ✅ P2 | — |
+| Storage | ❌ Free | +3 points if enabled |
+| Containers | ❌ Free | +2 points if enabled |
+| Key Vault | ✅ Standard | — |
+| App Service | ✅ Standard | — |
+
+### Remediation commands (sample)
+
+```bash
+# Enable HTTPS-only on App Service
+az webapp update --name app-web-prod --resource-group rg-app-prod --set httpsOnly=true
+
+# Enable Defender for Storage
+az security pricing create --name StorageAccounts --tier Standard
+
+# Restrict SQL Server public access
+az sql server update --name sql-contoso-prod --resource-group rg-data-prod --set publicNetworkAccess="Disabled"
+```
