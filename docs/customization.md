@@ -4,6 +4,20 @@ Each SKILL.md is self-contained and designed to be easily adapted to your organi
 
 ## Common customizations
 
+### Accepted exceptions (all skills)
+
+Every skill supports an optional exceptions list to suppress known false positives. When you trigger a skill, provide exceptions in this format:
+
+```
+Accepted exceptions:
+| Check | Reason |
+|-------|--------|
+| 1.1 Availability zones | Single-AZ by design to reduce cost |
+| 3.2 Reserved instances | Short-term workload, reservations not applicable |
+```
+
+The agent will skip those checks in scoring and list them separately at the end of the report. This avoids the same known tradeoffs being flagged every run.
+
 ### Tagging standards (Compliance & FinOps skills)
 
 Default mandatory tags checked:
@@ -71,7 +85,7 @@ You can create specialized variants of any skill. For example:
 For proactive monitoring, combine customized skills with scheduled tasks:
 
 1. Customize a skill for your environment (e.g., production-only WAF review)
-2. Install it via **Builder** → **Skill Builder**
+2. Install it via **Skill Builder** (left sidebar under Builder)
 3. Create a scheduled task via **Automation** → **+ Create** → **Scheduled task**
 4. In **Task details**, write the prompt that triggers your skill (e.g., "Run the production WAF review for subscription contoso-prod")
 5. Set the **Frequency** and **Agent autonomy level** to Autonomous for fully hands-off execution
