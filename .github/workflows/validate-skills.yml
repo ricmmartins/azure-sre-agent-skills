@@ -1,0 +1,61 @@
+name: Validate Skills
+
+on:
+  push:
+    paths:
+      - 'skills/**/SKILL.md'
+  pull_request:
+    paths:
+      - 'skills/**/SKILL.md'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate SKILL.md files
+        run: |
+          EXIT_CODE=0
+
+          REQUIRED_FRONT_MATTER=("name" "description" "tools")
+          REQUIRED_SECTIONS=(
+            "## Purpose"
+            "## Scoring"
+            "## Accepted exceptions"
+            "## Sample output"
+          )
+
+          for skill in skills/*/SKILL.md; do
+            echo "::group::Checking $skill"
+            
+            # Check YAML front matter exists
+            if ! head -1 "$skill" | grep -q "^---"; then
+              echo "::error file=$skill::Missing YAML front matter"
+              EXIT_CODE=1
+            else
+              # Check required front matter fields
+              FRONT_MATTER=$(sed -n '1,/^---$/{ /^---$/d; p }' "$skill" | tail -n +1)
+              for field in "${REQUIRED_FRONT_MATTER[@]}"; do
+                if ! echo "$FRONT_MATTER" | grep -q "^${field}:"; then
+                  echo "::error file=$skill::Missing front matter field: $field"
+                  EXIT_CODE=1
+                fi
+              done
+            fi
+
+            # Check required sections
+            for section in "${REQUIRED_SECTIONS[@]}"; do
+              if ! grep -q "^${section}" "$skill"; then
+                echo "::error file=$skill::Missing required section: $section"
+                EXIT_CODE=1
+              fi
+            done
+
+            echo "::endgroup::"
+          done
+
+          if [ $EXIT_CODE -eq 0 ]; then
+            echo "✅ All skills validated successfully"
+          fi
+          exit $EXIT_CODE
