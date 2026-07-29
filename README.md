@@ -65,7 +65,7 @@ Advisor is a linter. These skills are closer to a staff SRE who reads everything
 
 ### Try your first skill
 
-1. Go to [sre.azure.com](https://sre.azure.com/) and open the **Builder → Skills** tab.
+1. Go to [sre.azure.com](https://sre.azure.com/) and open **Skill Builder** (left sidebar under Builder).
 2. Click **+ Create skill**, then paste the full contents of any [`SKILL.md`](skills/) file from this repo (start with [Digital Native Governance](skills/07-digital-native-governance/SKILL.md) — it's the fastest to see results).
 3. Save the skill, set a schedule (or run on-demand), and point it at your subscription. You'll get a scored report in minutes.
 

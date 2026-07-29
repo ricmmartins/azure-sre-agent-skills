@@ -66,22 +66,14 @@ You can create specialized variants of any skill. For example:
 3. Remove the chargeback section (single team doesn't need it)
 4. Install as a team-specific skill
 
-## Combining with custom agents
+## Combining skills with scheduled tasks
 
-For more complex scenarios, consider creating a **custom agent** that:
-1. Runs multiple skills in sequence
-2. Maintains state between runs
-3. Sends results via email or Teams
+For proactive monitoring, combine customized skills with scheduled tasks:
 
-Example agent YAML (for WAF Review automation):
-```yaml
-name: quarterly-waf-reviewer
-description: Runs a full Well-Architected review quarterly and posts results to Teams
-skills:
-  - well-architected-review
-connectors:
-  - Microsoft Teams
-schedule: "0 9 1 */3 *"  # First of every quarter at 9 AM
-```
+1. Customize a skill for your environment (e.g., production-only WAF review)
+2. Install it via **Builder** → **Skill Builder**
+3. Create a scheduled task via **Automation** → **+ Create** → **Scheduled task**
+4. In **Task details**, write the prompt that triggers your skill (e.g., "Run the production WAF review for subscription contoso-prod")
+5. Set the **Frequency** and **Agent autonomy level** to Autonomous for fully hands-off execution
 
-Note: Custom agent creation via YAML is a future capability — check SRE Agent docs for current status.
+This way, your customized skill runs on a schedule without manual intervention. Results appear in the chat thread configured under "Message grouping for updates."

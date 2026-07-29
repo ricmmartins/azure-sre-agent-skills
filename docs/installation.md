@@ -25,8 +25,8 @@
 
 ### Option 1: Install via SRE Agent Portal (recommended)
 
-1. Open the [Azure SRE Agent portal](https://portal.azure.com/#view/Microsoft_Azure_SREAgent/SREAgentBlade)
-2. Navigate to **Builder** → **Skills**
+1. Open the [Azure SRE Agent portal](https://sre.azure.com/)
+2. Navigate to **Skill Builder** (left sidebar under Builder)
 3. Click **+ Create skill**
 4. For each skill you want to install:
    - Copy the **entire contents** of the `SKILL.md` file (including the `---` YAML front matter)
@@ -63,7 +63,7 @@ The agent should automatically load the relevant skill based on your question.
 
 ### Skill not activating
 - Check that the skill's `description` field contains keywords matching your question
-- Verify the skill is saved (check Builder → Skills list)
+- Verify the skill is saved (check **Skill Builder** list)
 - Remember: max 5 skills loaded concurrently (oldest auto-unloads)
 
 ### Permission errors
@@ -77,7 +77,7 @@ The agent should automatically load the relevant skill based on your question.
 
 ## Uninstalling
 
-1. Open **Builder** → **Skills**
+1. Open **Skill Builder** (left sidebar under Builder)
 2. Find the skill to remove
 3. Click **Delete**
 
