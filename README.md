@@ -23,6 +23,8 @@ This pack adds **8 custom skills** that transform your SRE Agent into a proactiv
 | 07 | [Digital Native Governance](skills/07-digital-native-governance/SKILL.md) | Startup governance maturity check (15 checks, scored 0–100) | Enterprise readiness for startups |
 | 08 | [AI Foundry & OpenAI Posture](skills/08-ai-foundry-posture/SKILL.md) | Security, reliability & cost posture for Azure OpenAI/Foundry (15 checks) | AI workload production readiness |
 
+Each skill includes a sample output so you can preview the report format before running it.
+
 ### Skill outputs (real examples)
 
 | | |
@@ -69,13 +71,7 @@ Advisor is a linter. These skills are closer to a staff SRE who reads everything
 
 ### Installation
 
-1. Open the **Azure SRE Agent portal** → **Builder** → **Skills**
-2. Click **+ Create skill**
-3. Copy the contents of any `SKILL.md` file from this repo
-4. Paste into the skill editor
-5. Save — the skill auto-activates based on conversational intent
-
-Repeat for each skill you want to install.
+See [Try your first skill](#try-your-first-skill) above for step-by-step setup. Repeat for each skill you want to install.
 
 ### Usage
 
@@ -110,6 +106,7 @@ Azure SRE Agent supports max **5 concurrent skills** (oldest auto-unloads). This
 
 Each SKILL.md is self-contained. Common customizations:
 
+- **Accepted exceptions**: Each skill supports an optional exceptions list to suppress known false positives (e.g., single-AZ by design, dev/test without backups). The agent skips excepted checks in scoring and lists them separately in the report.
 - **Adjust tagging standards** in Compliance skill (Step 3) to match your organization
 - **Change cost allocation tags** in FinOps Intelligence (Pre-check section)
 - **Set quota thresholds** in Capacity Planning (default: flag at 70%)
@@ -156,4 +153,4 @@ Ideas for new skills:
 
 ---
 
-Built by [@ricmmartins](https://github.com/ricmmartins) | Powered by [Azure SRE Agent](https://sre.azure.com/docs)
+Built by [@ricmmartins](https://github.com/ricmmartins) | Powered by [Azure SRE Agent](https://sre.azure.com/docs) | 📝 [Blog post: Your Startup Doesn't Have an SRE Team — Now What?](https://techcommunity.microsoft.com/blog/startupsatmicrosoftblog/your-startup-doesnt-have-an-sre-team-now-what/4540142)
