@@ -5,6 +5,7 @@
 > ⚠️ **Community project**: These skills are not officially maintained by Microsoft. They have been tested on a live Azure SRE Agent instance but may require adjustments as the platform evolves. Contributions and bug reports are welcome!
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Validate Skills](https://github.com/ricmmartins/azure-sre-agent-skills/actions/workflows/validate-skills.yml/badge.svg)](https://github.com/ricmmartins/azure-sre-agent-skills/actions/workflows/validate-skills.yml)
 
 ## 🎯 What is this?
 
@@ -137,7 +138,7 @@ See [docs/architecture.md](docs/architecture.md) for detailed design choices, sa
 
 ## 🤝 Contributing
 
-Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines. A CI workflow automatically validates SKILL.md structure (front matter + required sections) on every PR.
 
 Ideas for new skills:
 - SLA/SLO monitoring dashboard
