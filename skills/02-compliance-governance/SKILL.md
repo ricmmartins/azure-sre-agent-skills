@@ -125,6 +125,23 @@ az monitor diagnostic-settings subscription list --subscription <id> -o table
 
 Reminder: use the actual Unicode characters 🟢 🟡 🔴 above, never shortcodes.
 
+## Accepted exceptions (optional)
+
+If the user provides a list of accepted exceptions, do not flag those items. Instead, note them in the report as **Accepted Exception** with the reason provided.
+
+Example format the user may provide:
+
+| Check | Reason |
+|-------|--------|
+| 2.1 Owner count | Founding engineers require Owner for break-glass access |
+| 3.1 Tagging compliance | Legacy resource groups exempt until Q3 migration |
+| 4.2 Production locks | Terraform-managed resources use state locking instead |
+
+When exceptions are provided:
+- Skip the flagged checks in scoring
+- List them in a separate "Accepted Exceptions" section at the end of the report
+- Recalculate the overall score excluding excepted checks
+
 ## Expected output
 
 ### Report header (mandatory — use this exact format)

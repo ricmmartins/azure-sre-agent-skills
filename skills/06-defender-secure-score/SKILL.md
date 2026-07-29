@@ -136,6 +136,23 @@ Note on date handling: The SRE Agent sandbox runs Linux. Use `$(date -u -d '30 d
 | **Medium** | Gap exists but requires specific conditions to exploit | 🟡 |
 | **Low** | Best practice deviation, minimal immediate risk | 🟢 |
 
+## Accepted exceptions (optional)
+
+If the user provides a list of accepted exceptions, do not flag those items. Instead, note them in the report as **Accepted Exception** with the reason provided.
+
+Example format the user may provide:
+
+| Check | Reason |
+|-------|--------|
+| 3.1 Defender for DNS | DNS plan deprecated by Microsoft, not applicable |
+| 5.2 Public blob access on storage | Public read access required for CDN-served static assets |
+| 5.4 Key Vault public access | Key Vault is accessed from hybrid on-prem workloads |
+
+When exceptions are provided:
+- Skip the flagged checks in scoring
+- List them in a separate "Accepted Exceptions" section at the end of the report
+- Recalculate the overall score excluding excepted checks
+
 ## Expected output
 
 ### Report header (mandatory — use this exact format)

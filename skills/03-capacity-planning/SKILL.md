@@ -143,6 +143,23 @@ For each risk identified:
 2. **Short-term** (1-2 weeks): Autoscale configuration, caching layers
 3. **Long-term**: Architecture changes (sharding, async patterns, CDN)
 
+## Accepted exceptions (optional)
+
+If the user provides a list of accepted exceptions, do not flag those items. Instead, note them in the report as **Accepted Exception** with the reason provided.
+
+Example format the user may provide:
+
+| Check | Reason |
+|-------|--------|
+| 1.1 vCPU quota utilization | Quota increase already submitted, awaiting approval |
+| 2.3 AKS cluster capacity | Cluster is scheduled for decommission next month |
+| 4.2 Application Gateway throughput | Traffic is seasonal, current capacity is intentional |
+
+When exceptions are provided:
+- Skip the flagged checks in scoring
+- List them in a separate "Accepted Exceptions" section at the end of the report
+- Recalculate the overall score excluding excepted checks
+
 ## Expected output
 
 ### Report header (mandatory — use this exact format)

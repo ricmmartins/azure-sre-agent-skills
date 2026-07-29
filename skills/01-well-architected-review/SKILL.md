@@ -104,6 +104,23 @@ For each check, assign one of:
 - ⚠️ **Needs attention** — partially implemented or at risk
 - ❌ **Fail** — not implemented, risk exposure
 
+## Accepted exceptions (optional)
+
+If the user provides a list of accepted exceptions, do not flag those items. Instead, note them in the report as **Accepted Exception** with the reason provided.
+
+Example format the user may provide:
+
+| Check | Reason |
+|-------|--------|
+| 1.1 Availability zones | Single-AZ by design to reduce cost |
+| 3.3 Reserved instances | Short-term workload, reservations not applicable |
+| 5.5 Connection pooling | Legacy app uses persistent connections by design |
+
+When exceptions are provided:
+- Skip the flagged checks in scoring
+- List them in a separate "Accepted Exceptions" section at the end of the report
+- Recalculate the overall score excluding excepted checks
+
 ## Expected output
 
 ### Report header (mandatory — use this exact format)

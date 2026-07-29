@@ -140,6 +140,23 @@ Calculate per-team efficiency indicators:
 - **Compute waste ratio**: Cost of idle/underutilized resources / total compute cost
 - **Tag compliance**: % of team's resources properly tagged
 
+## Accepted exceptions (optional)
+
+If the user provides a list of accepted exceptions, do not flag those items. Instead, note them in the report as **Accepted Exception** with the reason provided.
+
+Example format the user may provide:
+
+| Check | Reason |
+|-------|--------|
+| 2.1 Unattached managed disks | Kept for disaster recovery snapshots, reviewed monthly |
+| 3.2 Over-provisioned App Service plans | Pre-scaled for upcoming product launch next week |
+| 4.1 Reserved instances | Short-term project, reservations not cost-effective |
+
+When exceptions are provided:
+- Skip the flagged checks in scoring
+- List them in a separate "Accepted Exceptions" section at the end of the report
+- Recalculate the overall score excluding excepted checks
+
 ## Expected output
 
 ### Report header (mandatory — use this exact format)

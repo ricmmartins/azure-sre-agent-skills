@@ -99,6 +99,23 @@ Categories:
 
 ### Step 5: Compile the postmortem document
 
+## Accepted exceptions (optional)
+
+If the user provides a list of accepted exceptions, do not flag those items. Instead, note them in the report as **Accepted Exception** with the reason provided.
+
+Example format the user may provide:
+
+| Check | Reason |
+|-------|--------|
+| Time to detect | Alert delay was due to a known monitoring gap being addressed in AI-3 |
+| Five Whys depth | Root cause was an external provider outage, further analysis not applicable |
+| Missing runbook | Service is new, runbook creation is tracked in AI-5 |
+
+When exceptions are provided:
+- Skip the flagged checks in scoring
+- List them in a separate "Accepted Exceptions" section at the end of the report
+- Recalculate the overall score excluding excepted checks
+
 ## Expected output
 
 ### Report header (mandatory — use this exact format)

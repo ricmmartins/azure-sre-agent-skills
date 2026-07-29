@@ -359,6 +359,23 @@ Scoring:
 
 ---
 
+## Accepted exceptions (optional)
+
+If the user provides a list of accepted exceptions, do not flag those items. Instead, note them in the report as **Accepted Exception** with the reason provided.
+
+Example format the user may provide:
+
+| Check | Reason |
+|-------|--------|
+| 2.1 Management Groups | Single subscription by design, MGs planned for Series B |
+| 3.1 Budget alerts | Cost alerts handled by external FinOps tool (Kubecost) |
+| 5.3 DDoS protection | PaaS-only architecture with no VNet-attached public IPs |
+
+When exceptions are provided:
+- Skip the flagged checks in scoring
+- List them in a separate "Accepted Exceptions" section at the end of the report
+- Recalculate the overall score excluding excepted checks
+
 ## Expected output
 
 ### Report header (mandatory — use this exact format)

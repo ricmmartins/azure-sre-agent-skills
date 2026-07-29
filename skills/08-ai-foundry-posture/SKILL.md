@@ -411,6 +411,23 @@ az cognitiveservices account list \
 | 70–89 | 🟢 **Solid** | Good posture — minor improvements recommended |
 | 90–100 | 🏆 **Exemplary** | Following WAF best practices for AI workloads |
 
+## Accepted exceptions (optional)
+
+If the user provides a list of accepted exceptions, do not flag those items. Instead, note them in the report as **Accepted Exception** with the reason provided.
+
+Example format the user may provide:
+
+| Check | Reason |
+|-------|--------|
+| 1.2 Network isolation | Public endpoint required for third-party SaaS integration |
+| 1.3 Content filtering | Custom RAI policy approved by security team for internal tool |
+| 3.3 PTU utilization | PTU capacity pre-provisioned for upcoming product launch |
+
+When exceptions are provided:
+- Skip the flagged checks in scoring
+- List them in a separate "Accepted Exceptions" section at the end of the report
+- Recalculate the overall score excluding excepted checks
+
 ## Expected output
 
 ### Report header (mandatory — use this exact format)
