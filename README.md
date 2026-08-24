@@ -7,6 +7,10 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Validate Skills](https://github.com/ricmmartins/azure-sre-agent-skills/actions/workflows/validate-skills.yml/badge.svg)](https://github.com/ricmmartins/azure-sre-agent-skills/actions/workflows/validate-skills.yml)
 
+📦 **Now in the marketplace**: These skills have been accepted into the [official Azure SRE Agent plugin marketplace](https://github.com/Azure/sre-agent-plugins/tree/main/plugins/azure-proactive-operations).
+
+📝 **Blog post**: [From reactive firefighting to proactive operations: custom skills for Azure SRE Agent](https://techcommunity.microsoft.com/blog/startupsatmicrosoftblog/from-reactive-firefighting-to-proactive-operations-custom-skills-for-azure-sre-a/4542961)
+
 ## 🎯 What is this?
 
 Azure SRE Agent is Microsoft's AI-powered site reliability agent with 40+ MCP connectors, sandboxed execution, and memory. While it excels at **reactive** incident response (investigating alerts, running diagnostics), it lacks **proactive** operational skills out of the box.
