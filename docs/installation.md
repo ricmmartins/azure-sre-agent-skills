@@ -25,19 +25,26 @@
 
 ## Step-by-step installation
 
-### Option 1: Install via SRE Agent Portal (recommended)
+### Option 1: Install from the official marketplace (recommended)
 
 1. Open the [Azure SRE Agent portal](https://sre.azure.com/)
-2. Navigate to **Skill Builder** (left sidebar under Builder)
-3. Click **+ Create skill**
-4. For each skill you want to install:
+2. Select your agent and navigate to **Builder > Plugins**
+3. Select **Add marketplace**
+4. Enter `Azure/sre-agent-plugins` in the **Marketplace URL or owner/repo** field, then select **Add**
+5. Open **Azure Proactive Operations** and select **Install**
+6. Verify the imported skills under **Builder > Skill builder**
+
+For more details, see the official [marketplace installation documentation](https://learn.microsoft.com/azure/sre-agent/install-plugin-from-marketplace).
+
+### Option 2: Create individual skills manually
+
+1. Open the [Azure SRE Agent portal](https://sre.azure.com/)
+2. Select your agent and navigate to **Builder > Agent Canvas**
+3. Select **+ Create skill**
+4. For each skill you want to create:
    - Copy the **entire contents** of the `SKILL.md` file (including the `---` YAML front matter)
    - Paste into the skill editor
-   - Click **Save**
-
-### Option 2: Install via API
-
-API-based installation is not yet documented by Microsoft. When available, it will allow bulk-installing skills programmatically. For now, use the portal method above.
+   - Select **Save**
 
 ## Verifying installation
 
@@ -58,7 +65,7 @@ The agent should automatically load the relevant skill based on your question.
 
 ### Skill not activating
 - Check that the skill's `description` field contains keywords matching your question
-- Verify the skill is saved (check **Skill Builder** list)
+- Verify the skill is available under **Builder > Skill builder**
 - Remember: max 5 skills loaded concurrently (oldest auto-unloads)
 
 ### Permission errors
@@ -72,7 +79,7 @@ The agent should automatically load the relevant skill based on your question.
 
 ## Uninstalling
 
-1. Open **Skill Builder** (left sidebar under Builder)
+1. Open **Builder > Skill builder**
 2. Find the skill to remove
 3. Click **Delete**
 
