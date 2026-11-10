@@ -109,7 +109,7 @@ The SRE Agent matches your intent to the skill's description and activates it au
 
 Azure SRE Agent supports max **5 concurrent skills** (oldest auto-unloads). This pack has 8 skills, but they're designed for different use cases — you'll rarely trigger more than 2-3 simultaneously.
 
-## 🔧 Customization
+## Customization
 
 Each SKILL.md is self-contained. Common customizations:
 
