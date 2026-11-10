@@ -68,15 +68,17 @@ Advisor is a linter. These skills are closer to a staff SRE who reads everything
 - At least **Reader** role on target subscriptions
 - For cost skills: **Cost Management Reader** role
 
-### Try your first skill
-
-1. Go to [sre.azure.com](https://sre.azure.com/) and open **Skill Builder** (left sidebar under Builder).
-2. Click **+ Create skill**, then paste the full contents of any [`SKILL.md`](skills/) file from this repo (start with [Digital Native Governance](skills/07-digital-native-governance/SKILL.md) — it's the fastest to see results).
-3. Save the skill, set a schedule (or run on-demand), and point it at your subscription. You'll get a scored report in minutes.
-
 ### Installation
 
-See [Try your first skill](#try-your-first-skill) above for step-by-step setup. Repeat for each skill you want to install.
+Install all eight skills from the official Azure SRE Agent plugin marketplace:
+
+1. Go to [sre.azure.com](https://sre.azure.com/) and select your agent.
+2. Open **Builder > Plugins**.
+3. Select **Add marketplace**, enter `Azure/sre-agent-plugins`, and select **Add**.
+4. Open **Azure Proactive Operations** and select **Install**.
+5. Verify the imported skills under **Builder > Skill builder**.
+
+See the [installation guide](docs/installation.md) for manual installation and troubleshooting, or follow the official [marketplace installation documentation](https://learn.microsoft.com/azure/sre-agent/install-plugin-from-marketplace).
 
 ### Usage
 
