@@ -1,4 +1,4 @@
-# Azure SRE Agent — Proactive Operations Skills Pack
+# Azure SRE Agent: Proactive Operations Skills Pack
 
 > Custom skills for [Azure SRE Agent](https://learn.microsoft.com/en-us/azure/sre-agent/) that fill gaps in its built-in capabilities, focused on **proactive governance**, **cost intelligence**, and **architecture quality**.
 
@@ -9,9 +9,9 @@
 
 📦 **Now in the marketplace**: These skills have been accepted into the [official Azure SRE Agent plugin marketplace](https://github.com/Azure/sre-agent-plugins/tree/main/plugins/azure-proactive-operations).
 
-📝 **Blog post**: [From reactive firefighting to proactive operations: custom skills for Azure SRE Agent](https://techcommunity.microsoft.com/blog/startupsatmicrosoftblog/from-reactive-firefighting-to-proactive-operations-custom-skills-for-azure-sre-a/4542961)
+**Blog post**: [From reactive firefighting to proactive operations: custom skills for Azure SRE Agent](https://techcommunity.microsoft.com/blog/startupsatmicrosoftblog/from-reactive-firefighting-to-proactive-operations-custom-skills-for-azure-sre-a/4542961)
 
-## 🎯 What is this?
+## What is this?
 
 Azure SRE Agent is Microsoft's AI-powered site reliability agent with 40+ MCP connectors, sandboxed execution, and memory. While it excels at **reactive** incident response (investigating alerts, running diagnostics), it lacks **proactive** operational skills out of the box.
 
@@ -39,7 +39,7 @@ Each skill includes a sample output so you can preview the report format before 
 | ![Defender](docs/images/skill-06-defender.png) | ![AI Foundry](docs/images/skill-08-ai-foundry.png) |
 | **Defender Secure Score** — quick wins with score impact | **AI Foundry Posture** — per-check Pass/Fail assessment |
 
-## 👤 Who is this for?
+## Who is this for?
 
 | Persona | Use case |
 |---------|----------|
@@ -48,7 +48,7 @@ Each skill includes a sample output so you can preview the report format before 
 | **CTO / Engineering Lead** | Pre-audit maturity assessment ("are we production-ready?") |
 | **FinOps Practitioner** | Monthly cost optimization + chargeback reports |
 
-## 🚀 Quick start
+## Quick start
 
 ### How this differs from Azure Advisor
 
@@ -97,7 +97,7 @@ Once installed, just ask naturally:
 
 The SRE Agent matches your intent to the skill's description and activates it automatically.
 
-## 📋 Skill details
+## Skill details
 
 ### Priority tiers
 
@@ -123,7 +123,7 @@ Each SKILL.md is self-contained. Common customizations:
 
 See [docs/customization.md](docs/customization.md) for detailed guidance.
 
-## ⏰ Automation with Scheduled Tasks
+## Automation with Scheduled Tasks
 
 These skills become even more powerful when combined with SRE Agent's **Scheduled Tasks** feature:
 
@@ -138,11 +138,11 @@ These skills become even more powerful when combined with SRE Agent's **Schedule
 
 See [docs/scheduled-tasks.md](docs/scheduled-tasks.md) for setup instructions.
 
-## 📐 Architecture decisions
+## Architecture decisions
 
 See [docs/architecture.md](docs/architecture.md) for detailed design choices, safety model, and skill structure conventions.
 
-## 🤝 Contributing
+## Contributing
 
 Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines. A CI workflow automatically validates SKILL.md structure (front matter + required sections) on every PR.
 
@@ -154,7 +154,7 @@ Ideas for new skills:
 - Container Apps / AKS health check
 - Data pipeline monitoring (Data Factory, Synapse)
 
-## 📄 License
+## License
 
 [MIT](LICENSE) — use freely, attribute if you like.
 
